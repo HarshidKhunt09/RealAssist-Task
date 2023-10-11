@@ -62,7 +62,7 @@ app.get('/pdf', async (req, res) => {
     });
 
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'attachment; filename=Report.pdf');
+    res.setHeader('Content-Disposition', 'inline; filename=Report.pdf');
     res.send(pdfBuffer);
   } catch (error) {
     console.error('Error generating PDF:', error);
