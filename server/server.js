@@ -21,7 +21,6 @@ app.get('/pdf', async (req, res) => {
         process.env.NODE_ENV === 'production'
           ? process.env.PUPPETEER_EXECUTABLE_PATH
           : puppeteer.executablePath(),
-      headless: 'new',
     });
     const page = await browser.newPage();
 
@@ -62,13 +61,14 @@ app.get('/pdf', async (req, res) => {
       scale: 0.95,
     });
 
-    await browser.close();
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', 'attachment; filename=Report.pdf');
     res.send(pdfBuffer);
   } catch (error) {
     console.error('Error generating PDF:', error);
     res.status(500).send('Error generating PDF', error);
+  } finally {
+    await browser.close();
   }
 });
 
