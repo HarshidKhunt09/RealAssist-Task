@@ -4,12 +4,12 @@
 
 2. Start server
 
-    cd server
-    npm i
-    npm start
+    cd server<br>
+    npm i<br>
+    npm start<br>
 
 3. Start client
 
-   cd frontend
-   npm i
-   npm start
+   cd frontend<br>
+   npm i<br>
+   npm start<br>    
