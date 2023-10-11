@@ -10,9 +10,7 @@ app.use(cors());
 
 app.get('/pdf', async (req, res) => {
   try {
-    const browser = await puppeteer.launch({
-      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
-    });
+    const browser = await puppeteer.launch({ headless: 'new' });
     const page = await browser.newPage();
 
     await page.goto(process.env.WEB_PAGE_TO_PDF_URL);
@@ -44,7 +42,7 @@ app.get('/pdf', async (req, res) => {
       await waitForFont();
     });
 
-    // await page.waitForSelector('#chart-class-name');
+    await page.waitForSelector('#chart-class-name');
 
     const pdfBuffer = await page.pdf({
       format: 'A4',
