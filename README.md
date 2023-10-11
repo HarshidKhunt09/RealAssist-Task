@@ -3,13 +3,14 @@
 1. Clone the repository to your local machine
 
 2. Start server
-
-    cd server<br>
-    npm i<br>
-    npm start<br>
-
+```
+    cd server
+    npm i
+    npm start
+```
 3. Start client
-
-   cd frontend<br>
-   npm i<br>
-   npm start<br>    
+```
+   cd frontend
+   npm i
+   npm start  
+```
