@@ -10,7 +10,15 @@ app.use(cors());
 
 app.get('/pdf', async (req, res) => {
   try {
-    const browser = await puppeteer.launch({ headless: 'new' });
+    const browser = await puppeteer.launch({
+      args: [
+        '--disable-setuid-sandbox',
+        '--no-sandbox',
+        '--single-process',
+        '--no-zygote',
+      ],
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
+    });
     const page = await browser.newPage();
 
     await page.goto(process.env.WEB_PAGE_TO_PDF_URL);
