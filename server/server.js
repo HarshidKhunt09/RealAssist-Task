@@ -8,6 +8,10 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 
+app.get('/', (req, res) => {
+  res.send('Server is running');
+});
+
 app.get('/pdf', async (req, res) => {
   try {
     const browser = await puppeteer.launch({
