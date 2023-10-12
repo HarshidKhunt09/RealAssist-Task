@@ -13,8 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/pdf', async (req, res) => {
-  try {
-    const browser = await puppeteer.launch({
+  const browser = await puppeteer.launch({
       args: [
         '--disable-setuid-sandbox',
         '--no-sandbox',
@@ -25,7 +24,8 @@ app.get('/pdf', async (req, res) => {
         process.env.NODE_ENV === 'production'
           ? process.env.PUPPETEER_EXECUTABLE_PATH
           : puppeteer.executablePath(),
-    });
+  });
+  try {
     const page = await browser.newPage();
 
     await page.goto(process.env.WEB_PAGE_TO_PDF_URL);
