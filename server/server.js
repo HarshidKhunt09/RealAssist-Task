@@ -15,7 +15,6 @@ app.get('/', (req, res) => {
 app.get('/pdf', async (req, res) => {
   try {
     const browser = await puppeteer.launch({
-      headless: false,
       args: [
         '--disable-setuid-sandbox',
         '--no-sandbox',
@@ -73,7 +72,9 @@ app.get('/pdf', async (req, res) => {
     console.error('Error generating PDF:', error);
     res.status(500).send('Error generating PDF', error);
   } finally {
-    await browser.close();
+    if (browser) {
+      await browser.close();
+    }
   }
 });
 
