@@ -1,7 +1,7 @@
-# Use a lightweight base image with Node.js
+# Use an official Node.js image
 FROM node:14-slim
 
-# Install Chromium and other dependencies
+# Install Chromium dependencies
 RUN apt-get update && apt-get install -yq \
   gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 \
   libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 \
@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -yq \
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
-# Set the working directory
+# Create and set the working directory
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json to leverage Docker layer caching
