@@ -16,19 +16,19 @@ app.get('/pdf', async (req, res) => {
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
     executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
   });
-  
+
   try {
     const page = await browser.newPage();
-    
+
     await page.goto(process.env.WEB_PAGE_TO_PDF_URL, { waitUntil: 'domcontentloaded' });
-    
+
     await page.waitForSelector('#chart-class-name');
-    
+
     const pdfBuffer = await page.pdf({
       format: 'A4',
       printBackground: true,
     });
-    
+
     res.setHeader('Content-Type', 'application/pdf');
     res.setHeader('Content-Disposition', 'attachment; filename=Report.pdf');
     res.send(pdfBuffer);
