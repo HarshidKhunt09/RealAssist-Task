@@ -33,7 +33,7 @@ app.get('/pdf', async (req, res) => {
     const filename = `Report-${timestamp}.pdf`;
 
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'attachment; filename=${filename}');
+    res.setHeader('Content-Disposition', `attachment; filename=${filename}`);
     res.send(pdfBuffer);
   } catch (error) {
     console.error('Error generating PDF:', error);
