@@ -29,8 +29,11 @@ app.get('/pdf', async (req, res) => {
       printBackground: true,
     });
 
+    const timestamp = new Date().toISOString().replace(/[-T:]/g, '').slice(0, 14);
+    const filename = `Report-${timestamp}.pdf`;
+
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', 'attachment; filename=Report.pdf');
+    res.setHeader('Content-Disposition', 'attachment; filename=${filename}');
     res.send(pdfBuffer);
   } catch (error) {
     console.error('Error generating PDF:', error);
